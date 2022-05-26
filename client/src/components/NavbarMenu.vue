@@ -1,38 +1,38 @@
 <script>
 import { RouterLink } from 'vue-router'
 export default {
-    name: "NavBar",
+    name: "NavBarMenu",
     components : {
         RouterLink
     }
 }
-</script> 
-
+</script>
 
 <template>
-<header class="header_section">
-   <div class="container">
-     <nav class="navbar navbar-expand-lg custom_nav-container ">
+   <div class="hero_area">
+    <div class="bg-box">
+      <img src="src/images/banner2-bg.jpg">
+    </div>
+    <!-- header section strats -->
+    <header class="header_section">
+      <div class="container">
+        <nav class="navbar navbar-expand-lg custom_nav-container ">
           <a class="navbar-brand" href="index.html">
-            <div >
-              <span >
-              Flys Kitchen 
+            <span>
+             Flys Kitchen
             </span>
-            </div>
-            
           </a>
-
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class=""> </span>
           </button>
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav  mx-auto ">
-              <li class="nav-item active">
-                <RouterLink to="/" class="nav-link">Home</RouterLink>
-              </li>
               <li class="nav-item">
-                <RouterLink to="/menu" class="nav-link">Menu</RouterLink>
+                <RouterLink class="nav-link" to="/">Home </RouterLink>
+              </li>
+              <li class="nav-item active">
+                <RouterLink class="nav-link" to="/menu">Menu <span class="sr-only">(current)</span> </RouterLink>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="about.html">About</a>
@@ -112,4 +112,8 @@ export default {
         </nav>
       </div>
     </header>
+    <!-- end header section -->
+  </div>
+
+
 </template>

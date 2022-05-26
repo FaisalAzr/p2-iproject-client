@@ -1,16 +1,38 @@
 import { defineStore } from 'pinia'
+import { axiosTransaction, foodAxios} from "../api/main";
+import axios from "axios"
+import Swal from 'sweetalert2'
 
-export const useCounterStore = defineStore({
-  id: 'counter',
+export const mainStore = defineStore({
+  id: "foods",
   state: () => ({
-    counter: 0
+    foods:[],
+    priceToPayState: 0,
+    checkoutModalState: false,
+    filterSearch: "",
+    filterCategory: "",
   }),
-  getters: {
-    doubleCount: (state) => state.counter * 2
-  },
   actions: {
-    increment() {
-      this.counter++
-    }
+    async getFood() {
+      try {
+        const response = await axios.get(`http://localhost:5050/foods`);
+        this.$state.foods = response.data.data;
+        //  console.log(this.$state.foods);
+      } catch (err) {
+        console.log(err.message);
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: err.message,
+        })
+      }
+    },
+    paymentHandler(payload) {
+      return axios.post("http://localhost:5050/payment", {
+        amount: payload.amount,
+        // fullName: localStorage.getItem("name"),
+        // email: localStorage.getItem("email"),
+      });
+    },
   }
 })
