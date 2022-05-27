@@ -2,6 +2,7 @@
 import { mapWritableState, mapActions } from "pinia";
 import { mainStore } from "@/stores/main.js";
 import { useToast } from "vue-toastification";
+
 // import Container from "../../views/container/Container.vue";
 import Button from "@/components/Button.vue";
 
@@ -58,15 +59,19 @@ export default {
           amount: this.priceToPayState * this.quantity,
         });
 
-        await snap.pay(response.data?.token, {
+        await snap.pay(
+          // "2662bb76-a29f-406e-b41e-f49886aff310",
+          response.data?.token, 
+          {
           onSuccess: (result) => {
             this.checkoutModalState = false;
-            this.toast.success("Pembayaran berhasil dilakukan");
+            this.toast.success("Payment Success");
           },
         });
         await this.checkoutHandler({
           packageQty: this.quantity,
         });
+        console.log(response.data);
       } catch (err) {
         console.log(err);
         

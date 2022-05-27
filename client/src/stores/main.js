@@ -7,7 +7,7 @@ export const mainStore = defineStore({
   id: "foods",
   state: () => ({
     foods:[],
-    priceToPayState: 0,
+    priceToPayState: 10000,
     checkoutModalState: false,
     filterSearch: "",
     filterCategory: "",
@@ -28,7 +28,7 @@ export const mainStore = defineStore({
       }
     },
     paymentHandler(payload) {
-      return axios.post("http://localhost:5050/payment", {
+      return axiosTransaction().post("http://localhost:5050/payment", {
         amount: payload.amount,
         // fullName: localStorage.getItem("name"),
         // email: localStorage.getItem("email"),
